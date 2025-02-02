@@ -53,9 +53,9 @@ def histogram(data, nbins, range = None):
                               N0.logical_and(N0.less_equal(data, max),
                                                   N0.greater_equal(data, min)))
     bin_width = (max-min)/nbins
-    data = N0.floor((data - min)/bin_width).astype(N0.Int)
+    data = N0.floor((data - min)/bin_width).astype(N0.int64)
     histo = N0.add.reduce(N0.equal(
-        N0.arange(nbins)[:,N0.NewAxis], data), -1)
+        N0.arange(nbins)[:,N0.newaxis], data), -1)
     histo[-1] = histo[-1] + N0.add.reduce(N0.equal(nbins, data))
     bins = min + bin_width*(N0.arange(nbins)+0.5)
     return N0.transpose(N0.array([bins, histo]))
