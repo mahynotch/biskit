@@ -39,7 +39,17 @@ arraytype = mu.ndarray
 
 LittleEndian = (sys.byteorder == 'little')
 
-from numpy import deprecate
+import warnings
+
+def deprecate(func, old_name, new_name):
+    def wrapper(*args, **kwargs):
+        warnings.warn(
+            f"{old_name} is deprecated and will be removed in a future version. Use {new_name} instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
+        return func(*args, **kwargs)
+    return wrapper
 
 # backward compatibility
 arrayrange = deprecate(functions.arange, 'arrayrange', 'arange')

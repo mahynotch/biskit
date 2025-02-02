@@ -9,7 +9,7 @@ staticfiles
 .env
 dev_uploads
 *.db
-
+tmp
 *.py[cod]
 
 # C extensions

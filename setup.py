@@ -32,7 +32,7 @@ for dirpath, dirnames, filenames in os.walk(biskit_dir):
         if dirname.startswith('.'): del dirnames[i]
 
     if '__init__.py' in filenames:
-        package = dirpath[len_root_dir:].lstrip('/').replace('/', '.')
+        package = dirpath[len_root_dir:].lstrip(os.sep).replace(os.sep, '.')
         packages.append(package)
     else:
         data_files.append([dirpath, [os.path.join(dirpath, f) for f in filenames]])
